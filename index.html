@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CareerHub - Your gateway to top careers. Find jobs, explore companies, and connect with hiring managers.">
+  <title>CareerHub - Find Your Dream Job</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon (inline SVG to avoid external request) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+</head>
+
+<body>
+
+  
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link nav__link--active">Home</a>
+          <a href="jobs.html" class="nav__link">Find Jobs</a>
+          <a href="companies.html" class="nav__link">Companies</a>
+          <a href="candidates.html" class="nav__link">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         HERO SECTION
+         ============================================================ -->
+    <section class="hero">
+      <div class="container hero__inner">
+
+        <!-- Left: Headline + CTAs -->
+        <div class="hero__content">
+          <h1 class="hero__title">Matches Your <span>Skills</span> And <span>Ambitions</span></h1>
+          <p class="hero__desc">
+            Search and apply for the latest jobs from 2,500+ top companies. Build your career,
+            connect with hiring managers, and land the role you deserve in just a few clicks.
+          </p>
+          <div class="hero__cta">
+            <a href="jobs.html" class="btn btn--primary btn--lg">
+              <i class="fas fa-user-tie"></i>&nbsp;I'm Looking for a Job
+            </a>
+            <a href="post-job.html" class="btn btn--outline btn--lg">
+              <i class="fas fa-building"></i>&nbsp;I'm Hiring for a Job
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Visual -->
+        <div class="hero__media">
+          <div class="hero__media-decor hero__media-decor--1" aria-hidden="true"></div>
+          <div class="hero__media-decor hero__media-decor--2" aria-hidden="true"></div>
+          <div class="hero__media-decor hero__media-decor--3" aria-hidden="true"></div>
+
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+            alt="Professional job seeker smiling confidently"
+            class="hero__media-img"
+            width="800"
+            height="1000"
+            loading="eager"
+          >
+
+          <!-- Floating Statistics Card -->
+          <div class="hero__stats-card" aria-label="CareerHub statistics">
+            <div class="hero__stat">
+              <p class="hero__stat-number">10,000+</p>
+              <p class="hero__stat-label">Active Jobs</p>
+            </div>
+            <div class="hero__stat">
+              <p class="hero__stat-number">2,500+</p>
+              <p class="hero__stat-label">Companies</p>
+            </div>
+            <div class="hero__stat">
+              <p class="hero__stat-number">1,00,000+</p>
+              <p class="hero__stat-label">Candidates</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HERO SEARCH BAR (overlaps the hero bottom edge)
+         ============================================================ -->
+    <section class="hero-search-section" aria-label="Search jobs">
+      <div class="container">
+        <form class="hero__search-form" id="heroSearchForm" role="search">
+
+          <div class="hero__search-field">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input
+              type="text"
+              id="heroSearchKeyword"
+              name="q"
+              placeholder="Job title, keyword or company"
+              aria-label="Job title, keyword or company"
+            >
+          </div>
+
+          <div class="hero__search-field hero__search-field--select">
+            <i class="fas fa-briefcase" aria-hidden="true"></i>
+            <select id="heroSearchCategory" name="category" aria-label="Select category">
+              <option value="">All Categories</option>
+              <option value="software">IT &amp; Software</option>
+              <option value="marketing">Marketing</option>
+              <option value="sales">Sales</option>
+              <option value="design">Design</option>
+              <option value="finance">Finance</option>
+              <option value="hr">HR &amp; Admin</option>
+              <option value="engineering">Engineering</option>
+            </select>
+          </div>
+
+          <div class="hero__search-field">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <input
+              type="text"
+              id="heroSearchLocation"
+              name="location"
+              placeholder="Location"
+              aria-label="Location"
+            >
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg">
+            <i class="fas fa-search"></i>&nbsp;Search Jobs
+          </button>
+        </form>
+
+        <div class="hero__popular">
+          <span class="hero__popular-label"><i class="fas fa-fire"></i>Popular Searches:</span>
+          <div class="hero__popular-tags">
+            <a href="jobs.html?q=ui%2Fux%20designer">UI/UX Designer</a>
+            <a href="jobs.html?q=developer">Developer</a>
+            <a href="jobs.html?q=marketing">Marketing</a>
+            <a href="jobs.html?q=product%20manager">Product Manager</a>
+            <a href="jobs.html?q=data%20analyst">Data Analyst</a>
+            <a href="jobs.html?q=sales">Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         JOB CATEGORIES SECTION
+         ============================================================ -->
+    <section class="section" aria-labelledby="categories-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Browse By Category</span>
+          <h2 class="section-header__title" id="categories-title">Browse Jobs By Category</h2>
+          <p class="section-header__desc">Find your next career opportunity across a wide range of industries and specializations.</p>
+        </div>
+
+        <div class="grid grid-8" id="categoriesGrid">
+          <!-- Categories injected by js/data.js -->
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="jobs.html" class="btn btn--outline-primary btn--lg">View All Categories <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURED JOBS SECTION
+         ============================================================ -->
+    <section class="section section--alt" aria-labelledby="featured-jobs-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Featured Opportunities</span>
+          <h2 class="section-header__title" id="featured-jobs-title">Latest Featured Jobs</h2>
+          <p class="section-header__desc">Handpicked job opportunities from our most trusted hiring partners.</p>
+        </div>
+
+        <div class="grid grid-3" id="featuredJobsGrid">
+          <!-- Jobs injected by js/data.js -->
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="jobs.html" class="btn btn--dark btn--lg">Browse All Jobs <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STATISTICS BANNER
+         ============================================================ -->
+    <section class="stats-banner" aria-label="Platform statistics">
+      <div class="container">
+        <div class="stats-banner__grid">
+          <div class="stat" data-reveal style="--reveal-delay: 0s;">
+            <div class="stat__icon"><i class="fas fa-briefcase"></i></div>
+            <p class="stat__number">25,000+</p>
+            <p class="stat__label">Active Jobs</p>
+          </div>
+          <div class="stat" data-reveal style="--reveal-delay: 0.08s;">
+            <div class="stat__icon"><i class="fas fa-building"></i></div>
+            <p class="stat__number">2,500+</p>
+            <p class="stat__label">Companies</p>
+          </div>
+          <div class="stat" data-reveal style="--reveal-delay: 0.16s;">
+            <div class="stat__icon"><i class="fas fa-user-tie"></i></div>
+            <p class="stat__number">1,00,000+</p>
+            <p class="stat__label">Candidates</p>
+          </div>
+          <div class="stat" data-reveal style="--reveal-delay: 0.24s;">
+            <div class="stat__icon"><i class="fas fa-layer-group"></i></div>
+            <p class="stat__number">50+</p>
+            <p class="stat__label">Job Categories</p>
+          </div>
+          <div class="stat" data-reveal style="--reveal-delay: 0.32s;">
+            <div class="stat__icon"><i class="fas fa-award"></i></div>
+            <p class="stat__number">95%</p>
+            <p class="stat__label">Success Rate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HOW IT WORKS SECTION
+         ============================================================ -->
+    <section class="section" aria-labelledby="how-it-works-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">How It Works</span>
+          <h2 class="section-header__title" id="how-it-works-title">Get Hired in 4 Easy Steps</h2>
+          <p class="section-header__desc">Our simple process makes it easy for candidates to connect with the right employers.</p>
+        </div>
+
+        <div class="steps">
+          <!-- Step 01 -->
+          <div class="step" data-reveal style="--reveal-delay: 0s;">
+            <div class="step__circle">
+              <span class="step__num">01</span>
+              <span class="step__icon"><i class="fas fa-user-plus"></i></span>
+            </div>
+            <h4 class="step__title">Create Account</h4>
+            <p class="step__desc">Sign up and complete your profile to get started.</p>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="step" data-reveal style="--reveal-delay: 0.1s;">
+            <div class="step__circle">
+              <span class="step__num">02</span>
+              <span class="step__icon"><i class="fas fa-search"></i></span>
+            </div>
+            <h4 class="step__title">Find Jobs</h4>
+            <p class="step__desc">Search job openings that match your skills and experience.</p>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="step" data-reveal style="--reveal-delay: 0.2s;">
+            <div class="step__circle">
+              <span class="step__num">03</span>
+              <span class="step__icon"><i class="fas fa-paper-plane"></i></span>
+            </div>
+            <h4 class="step__title">Apply Jobs</h4>
+            <p class="step__desc">Apply to jobs that interest you and get noticed.</p>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="step" data-reveal style="--reveal-delay: 0.3s;">
+            <div class="step__circle">
+              <span class="step__num">04</span>
+              <span class="step__icon"><i class="fas fa-handshake"></i></span>
+            </div>
+            <h4 class="step__title">Get Hired</h4>
+            <p class="step__desc">Get shortlisted and kickstart your dream career.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EMPLOYER CTA SECTION
+         ============================================================ -->
+    <section class="employer-cta" aria-label="Are you an employer">
+      <div class="container">
+        <div class="employer-cta__card" data-reveal>
+          <div class="employer-cta__content">
+            <h2 class="employer-cta__title">Are You An <span>Employer?</span></h2>
+            <p class="employer-cta__desc">Post a job and connect with thousands of qualified candidates.</p>
+            <a href="post-job.html" class="btn btn--primary btn--lg employer-cta__btn">
+              <i class="fas fa-plus"></i>&nbsp;Post a Job Now
+            </a>
+          </div>
+          <div class="employer-cta__media">
+            <div class="employer-cta__decor employer-cta__decor--1" aria-hidden="true"></div>
+            <div class="employer-cta__decor employer-cta__decor--2" aria-hidden="true"></div>
+            <img
+              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80"
+              alt="Professional workspace with a laptop"
+              class="employer-cta__img"
+              width="900"
+              height="650"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TOP COMPANIES SECTION
+         ============================================================ -->
+    <section class="section section--alt" aria-labelledby="companies-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Trusted By Top Employers</span>
+          <h2 class="section-header__title" id="companies-title">Top Companies Hiring</h2>
+          <p class="section-header__desc">These industry leaders trust CareerHub to find their next great hire.</p>
+        </div>
+
+        <div class="grid grid-3" id="companiesGrid">
+          <!-- Companies injected by js/data.js -->
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="companies.html" class="btn btn--outline-primary btn--lg">View All Companies <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIALS SECTION
+         ============================================================ -->
+    <section class="section" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Success Stories</span>
+          <h2 class="section-header__title" id="testimonials-title">What Our Candidates Say</h2>
+          <p class="section-header__desc">Real stories from people who found their dream careers through CareerHub.</p>
+        </div>
+
+        <div class="testimonials" id="testimonialsSlider">
+          <div class="testimonials__viewport">
+            <div class="testimonials__track">
+
+              <!-- Testimonial 1 -->
+              <div class="testimonials__slide">
+                <div class="card testimonial-card">
+                  <div class="testimonial-card__stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <p class="testimonial-card__text">"CareerHub made my job search effortless. I found my dream role at a top tech company within two weeks of signing up!"</p>
+                  <div class="testimonial-card__author">
+                    <img class="testimonial-card__avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Amit Sharma">
+                    <div class="text-left">
+                      <p class="testimonial-card__name">Amit Sharma</p>
+                      <p class="testimonial-card__role">Software Engineer at Google</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 2 -->
+              <div class="testimonials__slide">
+                <div class="card testimonial-card">
+                  <div class="testimonial-card__stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <p class="testimonial-card__text">"As a recruiter, CareerHub has been a game changer. We found exceptional candidates who perfectly matched our culture."</p>
+                  <div class="testimonial-card__author">
+                    <img class="testimonial-card__avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Patel">
+                    <div class="text-left">
+                      <p class="testimonial-card__name">Priya Patel</p>
+                      <p class="testimonial-card__role">HR Manager at Infosys</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 3 -->
+              <div class="testimonials__slide">
+                <div class="card testimonial-card">
+                  <div class="testimonial-card__stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <p class="testimonial-card__text">"The platform is intuitive, and I received interview calls within days. Excellent experience, highly recommended!"</p>
+                  <div class="testimonial-card__author">
+                    <img class="testimonial-card__avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sneha Gupta">
+                    <div class="text-left">
+                      <p class="testimonial-card__name">Sneha Gupta</p>
+                      <p class="testimonial-card__role">Product Designer at Amazon</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Previous / Next Controls -->
+          <div class="testimonials__controls">
+            <button type="button" class="testimonials__btn testimonials__btn--prev" aria-label="Previous testimonial">
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="testimonials__btn testimonials__btn--next" aria-label="Next testimonial">
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOG SECTION
+         ============================================================ -->
+    <section class="section section--alt" aria-labelledby="blog-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__subtitle">Career Insights</span>
+          <h2 class="section-header__title" id="blog-title">Latest From Our Blog</h2>
+          <p class="section-header__desc">Expert tips and advice to help you navigate your career journey with confidence.</p>
+        </div>
+
+        <div class="grid grid-4" id="blogGrid">
+          <!-- Blog cards injected by js/data.js -->
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="blog.html" class="btn btn--outline-primary btn--lg">View All Posts <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA SECTION
+         ============================================================ -->
+    <section class="cta" aria-label="Call to action">
+      <div class="container">
+        <h2 class="cta__title">Ready to Take the Next Step in Your Career?</h2>
+        <p class="cta__desc">Join thousands of professionals who found their dream jobs with CareerHub.</p>
+        <div class="cta__actions">
+          <a href="register.html" class="btn btn--primary btn--lg">Get Started Free</a>
+          <a href="post-job.html" class="btn btn--outline btn--lg">Post a Job</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo" aria-label="CareerHub Home">
+            <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+            Career<span>Hub</span>
+          </a>
+          <p class="footer__brand-desc">
+            CareerHub is India's leading job and placement portal, helping professionals find rewarding careers and helping companies hire exceptional talent.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- For Candidates -->
+        <div>
+          <h4 class="footer__title">For Candidates</h4>
+          <ul>
+            <li><a href="jobs.html" class="footer__link">Find Jobs</a></li>
+            <li><a href="jobs.html" class="footer__link">Browse Jobs</a></li>
+            <li><a href="blog.html" class="footer__link">Career Advice</a></li>
+            <li><a href="blog.html" class="footer__link">Career Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- For Employers -->
+        <div>
+          <h4 class="footer__title">For Employers</h4>
+          <ul>
+            <li><a href="post-job.html" class="footer__link">Post a Job</a></li>
+            <li><a href="#" class="footer__link">Employer Dashboard</a></li>
+            <li><a href="login.html" class="footer__link">Employer Login</a></li>
+            <li><a href="#" class="footer__link">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="footer__title">Resources</h4>
+          <ul>
+            <li><a href="#" class="footer__link">FAQs</a></li>
+            <li><a href="#" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="footer__link">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__newsletter">
+          <h4 class="footer__title">Newsletter</h4>
+          <p class="footer__newsletter-desc">Subscribe for the latest job alerts and career tips.</p>
+          <form class="footer__newsletter-form" novalidate>
+            <input
+              type="email"
+              class="footer__newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+          <p class="footer__newsletter-msg" hidden></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 CareerHub. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+    /* ---- Home Page Specific Initialization ---- */
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render categories grid
+      const categoriesGrid = document.querySelector('#categoriesGrid');
+      if (categoriesGrid) {
+        categoriesGrid.innerHTML = PORTAL_DATA.categories.map(cat => {
+          if (cat.isMore) {
+            return `
+              <a href="jobs.html" class="card category-card category-card--more">
+                <div class="category-card__icon"><i class="fas ${cat.icon}"></i></div>
+                <h5 class="category-card__title">${cat.name}</h5>
+                <p class="category-card__count">View All Jobs</p>
+              </a>
+            `;
+          }
+          return `
+            <a href="jobs.html?category=${cat.id}" class="card category-card">
+              <div class="category-card__icon"><i class="fas ${cat.icon}"></i></div>
+              <h5 class="category-card__title">${cat.name}</h5>
+              <p class="category-card__count">${cat.count.toLocaleString('en-IN')} Jobs</p>
+            </a>
+          `;
+        }).join('');
+      }
+
+      // Render featured jobs (only the featured flag)
+      const featuredJobs = PORTAL_DATA.jobs.filter(job => job.featured);
+      renderJobCards('#featuredJobsGrid', featuredJobs);
+
+      // Render featured companies + "More Companies" tile
+      const companiesGrid = document.querySelector('#companiesGrid');
+      if (companiesGrid) {
+        const featuredCompanies = PORTAL_DATA.companies.filter(company => company.featured);
+        companiesGrid.innerHTML = featuredCompanies.map(company => `
+          <a href="company-details.html?id=${company.id}" class="card company-card">
+            <div class="company-card__logo">
+              <img src="${company.logo}" alt="${company.name} logo" loading="lazy">
+            </div>
+            <h4 class="company-card__name">${company.name}</h4>
+            <p class="company-card__location"><i class="fas fa-map-marker-alt"></i>&nbsp;${company.location}</p>
+            <p class="company-card__jobs">${company.openJobs} open positions</p>
+          </a>
+        `).join('') + `
+          <a href="companies.html" class="card company-card company-card--more">
+            <div class="company-card__logo company-card__logo--more"><i class="fas fa-building"></i></div>
+            <h4 class="company-card__name">More Companies</h4>
+            <p class="company-card__jobs">Explore All</p>
+          </a>
+        `;
+      }
+
+      // Render blog posts
+      const blogGrid = document.querySelector('#blogGrid');
+      if (blogGrid) {
+        blogGrid.innerHTML = PORTAL_DATA.blogs.map(post => {
+          const date = new Date(post.date);
+          const dateLabel = date.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
+          return `
+            <article class="card blog-card">
+              <a href="blog.html" class="blog-card__media">
+                <img src="${post.image}" alt="${post.title}" class="blog-card__img" loading="lazy">
+                <span class="blog-card__badge">${dateLabel}</span>
+              </a>
+              <div class="blog-card__body">
+                <span class="blog-card__category">${post.category}</span>
+                <h4 class="blog-card__title"><a href="blog.html">${post.title}</a></h4>
+                <p class="blog-card__desc">${post.excerpt}</p>
+                <a href="blog.html" class="blog-card__read-more">Read More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      // Testimonial slider (previous / next controls)
+      const testimonialsSlider = document.querySelector('#testimonialsSlider');
+      if (testimonialsSlider) {
+        const track = testimonialsSlider.querySelector('.testimonials__track');
+        const slides = Array.from(testimonialsSlider.querySelectorAll('.testimonials__slide'));
+        const prevBtn = testimonialsSlider.querySelector('.testimonials__btn--prev');
+        const nextBtn = testimonialsSlider.querySelector('.testimonials__btn--next');
+        let activeIndex = 0;
+
+        const goToSlide = (index) => {
+          activeIndex = (index + slides.length) % slides.length;
+          track.style.transform = `translateX(-${activeIndex * 100}%)`;
+        };
+
+        prevBtn.addEventListener('click', () => goToSlide(activeIndex - 1));
+        nextBtn.addEventListener('click', () => goToSlide(activeIndex + 1));
+      }
+
+      // Restore saved bookmarks
+      restoreBookmarks();
+
+      // Wire up hero search
+      const heroForm = document.querySelector('#heroSearchForm');
+      if (heroForm) {
+        heroForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const keyword = document.querySelector('#heroSearchKeyword').value;
+          const category = document.querySelector('#heroSearchCategory').value;
+          const location = document.querySelector('#heroSearchLocation').value;
+          const params = new URLSearchParams();
+          if (keyword) params.set('q', keyword);
+          if (category) params.set('category', category);
+          if (location) params.set('location', location);
+          window.location.href = `jobs.html?${params.toString()}`;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

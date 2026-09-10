@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Career advice, interview tips, and job search guides on the CareerHub blog.">
+  <title>Career Blog - CareerHub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+
+  <!-- Page-specific styles -->
+  <style>
+    .blog-section {
+      padding: var(--space-10) 0;
+    }
+
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .blog-card__image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .blog-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .blog-card:hover .blog-card__image img {
+      transform: scale(1.08);
+    }
+
+    .blog-card__category {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+      background: var(--color-secondary);
+      color: var(--color-white);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-semibold);
+    }
+
+    .blog-card__body {
+      padding: var(--space-6);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      font-size: var(--fs-xs);
+      color: var(--color-gray-500);
+      margin-bottom: var(--space-3);
+    }
+
+    .blog-card__meta i {
+      color: var(--color-secondary);
+      margin-right: var(--space-1);
+    }
+
+    .blog-card__title {
+      font-size: var(--fs-md);
+      font-weight: var(--fw-bold);
+      color: var(--color-primary);
+      margin-bottom: var(--space-3);
+      transition: color var(--transition-fast);
+      line-height: 1.4;
+    }
+
+    .blog-card__title:hover {
+      color: var(--color-secondary);
+    }
+
+    .blog-card__excerpt {
+      font-size: var(--fs-sm);
+      color: var(--color-gray-600);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-4);
+      flex: 1;
+    }
+
+    .blog-card__author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-gray-200);
+    }
+
+    .blog-card__author img {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      object-fit: cover;
+    }
+
+    .blog-card__author-name {
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-semibold);
+      color: var(--color-gray-700);
+    }
+
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .blog-layout__featured {
+      margin-bottom: var(--space-6);
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      padding: 0;
+      overflow: hidden;
+      margin-bottom: var(--space-6);
+    }
+
+    .featured-card__image {
+      min-height: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .featured-card__category {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+      background: var(--color-secondary);
+      color: var(--color-white);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-semibold);
+    }
+
+    .featured-card__body {
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-card__title {
+      font-size: var(--fs-2xl);
+      margin-bottom: var(--space-4);
+      color: var(--color-primary);
+    }
+
+    .featured-card__excerpt {
+      font-size: var(--fs-base);
+      color: var(--color-gray-600);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-6);
+    }
+
+    @media (max-width: 768px) {
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-card__image {
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link">Home</a>
+          <a href="jobs.html" class="nav__link">Find Jobs</a>
+          <a href="companies.html" class="nav__link">Companies</a>
+          <a href="candidates.html" class="nav__link">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link nav__link--active">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         PAGE HEADER
+         ============================================================ -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Career Advice & Insights</h1>
+        <nav class="page-header__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="separator"><i class="fas fa-angle-right"></i></span>
+          <span>Blog</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOG SECTION
+         ============================================================ -->
+    <section class="blog-section">
+      <div class="container blog-layout">
+
+        <!-- ============ FEATURED ARTICLE ============ -->
+        <article class="card featured-card blog-layout__featured">
+          <div class="featured-card__image">
+            <span class="featured-card__category">Career Growth</span>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop" alt="Team collaborating" loading="lazy">
+          </div>
+          <div class="featured-card__body">
+            <div class="blog-card__meta">
+              <span><i class="far fa-calendar-alt"></i>Sept 05, 2026</span>
+              <span><i class="far fa-clock"></i>8 min read</span>
+            </div>
+            <h2 class="featured-card__title">
+              <a href="#">10 Networking Strategies to Accelerate Your Career in 2026</a>
+            </h2>
+            <p class="featured-card__excerpt">
+              In today's competitive job market, who you know is just as important as what you know.
+              Discover proven networking techniques that can open doors to hidden job opportunities.
+            </p>
+            <a href="#" class="btn btn--primary btn--sm" style="align-self: flex-start;">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- ============ LATEST ARTICLES ============ -->
+        <div class="grid grid-3" style="gap: var(--space-6);">
+
+          <!-- Article 1 -->
+          <article class="card blog-card">
+            <div class="blog-card__image">
+              <span class="blog-card__category">Interviews</span>
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop" alt="Job interview" loading="lazy">
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span><i class="far fa-calendar-alt"></i>Aug 30, 2026</span>
+              </div>
+              <h3 class="blog-card__title">
+                <a href="#">Top 20 Behavioral Interview Questions & How to Answer Them</a>
+              </h3>
+              <p class="blog-card__excerpt">
+                Interviewers use behavioral questions to predict your future performance. Learn the STAR method and ace your next interview.
+              </p>
+              <div class="blog-card__author">
+                <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Author avatar">
+                <div>
+                  <p class="blog-card__author-name">Vikram Singh</p>
+                  <p class="text-xs text-muted">Career Coach</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="card blog-card">
+            <div class="blog-card__image">
+              <span class="blog-card__category">Resume Tips</span>
+              <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&auto=format&fit=crop" alt="Writing a resume" loading="lazy">
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span><i class="far fa-calendar-alt"></i>Aug 24, 2026</span>
+              </div>
+              <h3 class="blog-card__title">
+                <a href="#">How to Write a Resume That Gets You Shortlisted in 6 Seconds</a>
+              </h3>
+              <p class="blog-card__excerpt">
+                Recruiters spend just seconds scanning each resume. Make every word count with these expert-approved resume techniques.
+              </p>
+              <div class="blog-card__author">
+                <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Author avatar">
+                <div>
+                  <p class="blog-card__author-name">Meera Krishnan</p>
+                  <p class="text-xs text-muted">HR Specialist</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="card blog-card">
+            <div class="blog-card__image">
+              <span class="blog-card__category">Skills</span>
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop" alt="Learning new skills" loading="lazy">
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span><i class="far fa-calendar-alt"></i>Aug 18, 2026</span>
+              </div>
+              <h3 class="blog-card__title">
+                <a href="#">Top 10 Most In-Demand Skills for 2026 That Employers Love</a>
+              </h3>
+              <p class="blog-card__excerpt">
+                Stay ahead of the curve. These ten skills are dominating job descriptions across all industries this year.
+              </p>
+              <div class="blog-card__author">
+                <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Author avatar">
+                <div>
+                  <p class="blog-card__author-name">Arjun Nair</p>
+                  <p class="text-xs text-muted">Tech Recruiter</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="card blog-card">
+            <div class="blog-card__image">
+              <span class="blog-card__category">Salary</span>
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&auto=format&fit=crop" alt="Salary negotiation" loading="lazy">
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span><i class="far fa-calendar-alt"></i>Aug 12, 2026</span>
+              </div>
+              <h3 class="blog-card__title">
+                <a href="#">Master the Art of Salary Negotiation: A Simple 5-Step Framework</a>
+              </h3>
+              <p class="blog-card__excerpt">
+                Negotiating your offer can significantly boost your earnings over time. Learn a simple framework to negotiate with confidence.
+              </p>
+              <div class="blog-card__author">
+                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Author avatar">
+                <div>
+                  <p class="blog-card__author-name">Divya Menon</p>
+                  <p class="text-xs text-muted">Compensation Analyst</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 5 -->
+          <article class="card blog-card">
+            <div class="blog-card__image">
+              <span class="blog-card__category">Remote Work</span>
+              <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&auto=format&fit=crop" alt="Remote work setup" loading="lazy">
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span><i class="far fa-calendar-alt"></i>Aug 05, 2026</span>
+              </div>
+              <h3 class="blog-card__title">
+                <a href="#">Thriving as a Remote Developer: Tips for Productivity & Work-Life Balance</a>
+              </h3>
+              <p class="blog-card__excerpt">
+                Remote work offers flexibility, but it comes with its own challenges. Here's how top developers stay productive at home.
+              </p>
+              <div class="blog-card__author">
+                <img src="https://randomuser.me/api/portraits/men/29.jpg" alt="Author avatar">
+                <div>
+                  <p class="blog-card__author-name">Rahul Deshpande</p>
+                  <p class="text-xs text-muted">Senior Engineer</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 6 -->
+          <article class="card blog-card">
+            <div class="blog-card__image">
+              <span class="blog-card__category">Career Change</span>
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop" alt="Studying for career change" loading="lazy">
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span><i class="far fa-calendar-alt"></i>Jul 28, 2026</span>
+              </div>
+              <h3 class="blog-card__title">
+                <a href="#">Making a Career Switch at 30: Everything You Need to Know</a>
+              </h3>
+              <p class="blog-card__excerpt">
+                It's never too late to change careers. A step-by-step playbook for switching industries without starting from zero.
+              </p>
+              <div class="blog-card__author">
+                <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Author avatar">
+                <div>
+                  <p class="blog-card__author-name">Neha Kapoor</p>
+                  <p class="text-xs text-muted">Career Counsellor</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="pagination" aria-label="Pagination">
+          <button class="pagination__btn pagination__btn--active">1</button>
+          <button class="pagination__btn">2</button>
+          <button class="pagination__btn">3</button>
+          <button class="pagination__btn" aria-label="Next page"><i class="fas fa-chevron-right"></i></button>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo" aria-label="CareerHub Home">
+            <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+            Career<span>Hub</span>
+          </a>
+          <p class="footer__brand-desc">
+            CareerHub is India's leading job and placement portal, helping professionals find rewarding careers and helping companies hire exceptional talent.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- For Candidates -->
+        <div>
+          <h4 class="footer__title">For Candidates</h4>
+          <ul>
+            <li><a href="jobs.html" class="footer__link">Find Jobs</a></li>
+            <li><a href="jobs.html" class="footer__link">Browse Jobs</a></li>
+            <li><a href="blog.html" class="footer__link">Career Advice</a></li>
+            <li><a href="blog.html" class="footer__link">Career Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- For Employers -->
+        <div>
+          <h4 class="footer__title">For Employers</h4>
+          <ul>
+            <li><a href="post-job.html" class="footer__link">Post a Job</a></li>
+            <li><a href="#" class="footer__link">Employer Dashboard</a></li>
+            <li><a href="login.html" class="footer__link">Employer Login</a></li>
+            <li><a href="#" class="footer__link">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="footer__title">Resources</h4>
+          <ul>
+            <li><a href="#" class="footer__link">FAQs</a></li>
+            <li><a href="#" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="footer__link">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__newsletter">
+          <h4 class="footer__title">Newsletter</h4>
+          <p class="footer__newsletter-desc">Subscribe for the latest job alerts and career tips.</p>
+          <form class="footer__newsletter-form" novalidate>
+            <input
+              type="email"
+              class="footer__newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+          <p class="footer__newsletter-msg" hidden></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 CareerHub. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

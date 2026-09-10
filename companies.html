@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore companies hiring on CareerHub. Learn about company cultures, open positions, and more.">
+  <title>Explore Companies - CareerHub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link">Home</a>
+          <a href="jobs.html" class="nav__link">Find Jobs</a>
+          <a href="companies.html" class="nav__link nav__link--active">Companies</a>
+          <a href="candidates.html" class="nav__link">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         PAGE HEADER
+         ============================================================ -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Explore Companies</h1>
+        <nav class="page-header__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="separator"><i class="fas fa-angle-right"></i></span>
+          <span>Companies</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMPANIES LISTING SECTION
+         ============================================================ -->
+    <section class="section">
+      <div class="container">
+        <!-- Search Bar -->
+        <div class="inline-search">
+          <div class="hero__search-field">
+            <i class="fas fa-building"></i>
+            <input type="text" id="companySearch" placeholder="Search companies by name..." aria-label="Search companies">
+          </div>
+          <button class="btn btn--primary" id="searchCompanyBtn">Search</button>
+        </div>
+
+        <!-- Companies Grid -->
+        <div class="grid grid-3" id="companiesGrid">
+          <!-- Companies injected by js/data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA SECTION
+         ============================================================ -->
+    <section class="cta" aria-label="Call to action">
+      <div class="container">
+        <h2 class="cta__title">Are You Hiring?</h2>
+        <p class="cta__desc">Post your job openings and reach thousands of qualified candidates today.</p>
+        <div class="cta__actions">
+          <a href="post-job.html" class="btn btn--primary btn--lg"><i class="fas fa-plus-circle"></i>&nbsp;Post a Job</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo" aria-label="CareerHub Home">
+            <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+            Career<span>Hub</span>
+          </a>
+          <p class="footer__brand-desc">
+            CareerHub is India's leading job and placement portal, helping professionals find rewarding careers and helping companies hire exceptional talent.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- For Candidates -->
+        <div>
+          <h4 class="footer__title">For Candidates</h4>
+          <ul>
+            <li><a href="jobs.html" class="footer__link">Find Jobs</a></li>
+            <li><a href="jobs.html" class="footer__link">Browse Jobs</a></li>
+            <li><a href="blog.html" class="footer__link">Career Advice</a></li>
+            <li><a href="blog.html" class="footer__link">Career Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- For Employers -->
+        <div>
+          <h4 class="footer__title">For Employers</h4>
+          <ul>
+            <li><a href="post-job.html" class="footer__link">Post a Job</a></li>
+            <li><a href="#" class="footer__link">Employer Dashboard</a></li>
+            <li><a href="login.html" class="footer__link">Employer Login</a></li>
+            <li><a href="#" class="footer__link">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="footer__title">Resources</h4>
+          <ul>
+            <li><a href="#" class="footer__link">FAQs</a></li>
+            <li><a href="#" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="footer__link">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__newsletter">
+          <h4 class="footer__title">Newsletter</h4>
+          <p class="footer__newsletter-desc">Subscribe for the latest job alerts and career tips.</p>
+          <form class="footer__newsletter-form" novalidate>
+            <input
+              type="email"
+              class="footer__newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+          <p class="footer__newsletter-msg" hidden></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 CareerHub. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+    /* ---- Companies Page Logic ---- */
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.querySelector('#companiesGrid');
+      const searchInput = document.querySelector('#companySearch');
+
+      const renderCompanies = (companies) => {
+        grid.innerHTML = companies.map(company => `
+          <a href="company-details.html?id=${company.id}" class="card company-card">
+            <div class="company-card__logo">
+              <img src="${company.logo}" alt="${company.name} logo" loading="lazy">
+            </div>
+            <h4 class="company-card__name">
+              ${company.name}
+              ${company.verified ? '<i class="fas fa-badge-check" style="color: var(--color-secondary); font-size: var(--fs-sm);"></i>' : ''}
+            </h4>
+            <p class="company-card__location"><i class="fas fa-map-marker-alt"></i>&nbsp;${company.location}</p>
+            <p class="company-card__jobs">${company.openJobs} open positions</p>
+          </a>
+        `).join('');
+      };
+
+      const handleSearch = () => {
+        const q = searchInput.value.toLowerCase().trim();
+        const filtered = q
+          ? PORTAL_DATA.companies.filter(c => c.name.toLowerCase().includes(q))
+          : PORTAL_DATA.companies;
+        renderCompanies(filtered);
+      };
+
+      // Initial render
+      renderCompanies(PORTAL_DATA.companies);
+
+      // Search events
+      searchInput.addEventListener('input', handleSearch);
+      document.querySelector('#searchCompanyBtn').addEventListener('click', handleSearch);
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSearch();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

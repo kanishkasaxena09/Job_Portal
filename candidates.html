@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse talented candidates and build your dream team on CareerHub.">
+  <title>Candidates - CareerHub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+
+  <!-- Page-specific styles -->
+  <style>
+    .candidates-section {
+      padding: var(--space-10) 0;
+    }
+
+    .candidate-card {
+      display: flex;
+      gap: var(--space-5);
+      padding: var(--space-6);
+      margin-bottom: var(--space-5);
+    }
+
+    .candidate-card__avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--color-gray-100);
+    }
+
+    .candidate-card__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .candidate-card__body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .candidate-card__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .candidate-card__name {
+      font-size: var(--fs-md);
+      font-weight: var(--fw-bold);
+      color: var(--color-primary);
+    }
+
+    .candidate-card__title {
+      font-size: var(--fs-sm);
+      color: var(--color-secondary-dark);
+      font-weight: var(--fw-medium);
+      margin-top: 2px;
+    }
+
+    .candidate-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin-top: var(--space-3);
+      font-size: var(--fs-sm);
+      color: var(--color-gray-500);
+    }
+
+    .candidate-card__meta i {
+      color: var(--color-secondary);
+      font-size: var(--fs-xs);
+      margin-right: var(--space-1);
+    }
+
+    .candidate-card__skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+
+    .candidate-card__actions {
+      display: flex;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+
+    /* Star rating color */
+    .stars {
+      color: var(--color-warning);
+      font-size: var(--fs-xs);
+    }
+
+    @media (max-width: 480px) {
+      .candidate-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link">Home</a>
+          <a href="jobs.html" class="nav__link">Find Jobs</a>
+          <a href="companies.html" class="nav__link">Companies</a>
+          <a href="candidates.html" class="nav__link nav__link--active">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         PAGE HEADER
+         ============================================================ -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Find Top Candidates</h1>
+        <nav class="page-header__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="separator"><i class="fas fa-angle-right"></i></span>
+          <span>Candidates</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CANDIDATES LISTING SECTION
+         ============================================================ -->
+    <section class="candidates-section">
+      <div class="container">
+
+        <!-- Candidate Search Bar -->
+        <div class="inline-search">
+          <div class="hero__search-field">
+            <i class="fas fa-user-tie"></i>
+            <input type="text" id="candidateSearch" placeholder="Search candidates by skill or title..." aria-label="Search candidates">
+          </div>
+          <button class="btn btn--primary" id="candidateSearchBtn">Search</button>
+        </div>
+
+        <!-- Candidates List -->
+        <div id="candidatesGrid" style="max-width: 860px; margin: 0 auto;">
+          <!-- Candidate cards rendered below -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo" aria-label="CareerHub Home">
+            <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+            Career<span>Hub</span>
+          </a>
+          <p class="footer__brand-desc">
+            CareerHub is India's leading job and placement portal, helping professionals find rewarding careers and helping companies hire exceptional talent.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- For Candidates -->
+        <div>
+          <h4 class="footer__title">For Candidates</h4>
+          <ul>
+            <li><a href="jobs.html" class="footer__link">Find Jobs</a></li>
+            <li><a href="jobs.html" class="footer__link">Browse Jobs</a></li>
+            <li><a href="blog.html" class="footer__link">Career Advice</a></li>
+            <li><a href="blog.html" class="footer__link">Career Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- For Employers -->
+        <div>
+          <h4 class="footer__title">For Employers</h4>
+          <ul>
+            <li><a href="post-job.html" class="footer__link">Post a Job</a></li>
+            <li><a href="#" class="footer__link">Employer Dashboard</a></li>
+            <li><a href="login.html" class="footer__link">Employer Login</a></li>
+            <li><a href="#" class="footer__link">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="footer__title">Resources</h4>
+          <ul>
+            <li><a href="#" class="footer__link">FAQs</a></li>
+            <li><a href="#" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="footer__link">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__newsletter">
+          <h4 class="footer__title">Newsletter</h4>
+          <p class="footer__newsletter-desc">Subscribe for the latest job alerts and career tips.</p>
+          <form class="footer__newsletter-form" novalidate>
+            <input
+              type="email"
+              class="footer__newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+          <p class="footer__newsletter-msg" hidden></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 CareerHub. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+    /* ---- Candidates Page Logic ---- */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Demo candidate data (kept local to this page for now)
+      const candidates = [
+        {
+          name: 'Ananya Iyer',
+          title: 'Senior Frontend Developer',
+          location: 'Mumbai, India',
+          experience: '6 years',
+          education: 'B.Tech, IIT Bombay',
+          salary: '1.8L - 2.5L',
+          skills: ['React', 'TypeScript', 'CSS3', 'UI Design'],
+          rating: 4.8,
+          avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+        },
+        {
+          name: 'Arjun Reddy',
+          title: 'Backend Engineer',
+          location: 'Hyderabad, India',
+          experience: '4 years',
+          education: 'M.Tech, NIT Warangal',
+          salary: '1.2L - 1.8L',
+          skills: ['Node.js', 'Python', 'PostgreSQL', 'AWS'],
+          rating: 4.6,
+          avatar: 'https://randomuser.me/api/portraits/men/75.jpg',
+        },
+        {
+          name: 'Kavya Sharma',
+          title: 'UI/UX Designer',
+          location: 'Bangalore, India',
+          experience: '3 years',
+          education: 'B.Des, NID Ahmedabad',
+          salary: '0.9L - 1.4L',
+          skills: ['Figma', 'Design Systems', 'Prototyping'],
+          rating: 4.9,
+          avatar: 'https://randomuser.me/api/portraits/women/47.jpg',
+        },
+        {
+          name: 'Rohan Gupta',
+          title: 'Data Scientist',
+          location: 'Pune, India',
+          experience: '5 years',
+          education: 'PhD, Data Science',
+          salary: '2.0L - 3.0L',
+          skills: ['Python', 'Machine Learning', 'TensorFlow', 'SQL'],
+          rating: 4.5,
+          avatar: 'https://randomuser.me/api/portraits/men/33.jpg',
+        },
+      ];
+
+      const grid = document.querySelector('#candidatesGrid');
+      const searchInput = document.querySelector('#candidateSearch');
+      let currentCandidates = [...candidates];
+
+      const renderCandidates = (list) => {
+        if (list.length === 0) {
+          grid.innerHTML = `
+            <div class="no-results text-center" style="padding: var(--space-12) 0;">
+              <i class="fas fa-user-slash no-results__icon"></i>
+              <h3>No candidates found</h3>
+              <p class="text-sm text-muted">Try adjusting your search criteria.</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = list.map(candidate => `
+          <article class="card candidate-card">
+            <div class="candidate-card__avatar">
+              <img src="${candidate.avatar}" alt="${candidate.name}" loading="lazy">
+            </div>
+            <div class="candidate-card__body">
+              <div class="candidate-card__top">
+                <div>
+                  <h3 class="candidate-card__name">${candidate.name}</h3>
+                  <p class="candidate-card__title">${candidate.title}</p>
+                </div>
+                <span class="badge badge--primary">
+                  <i class="fas fa-star stars"></i>&nbsp;${candidate.rating}
+                </span>
+              </div>
+
+              <div class="candidate-card__meta">
+                <span><i class="fas fa-map-marker-alt"></i>${candidate.location}</span>
+                <span><i class="fas fa-briefcase"></i>${candidate.experience} experience</span>
+                <span><i class="fas fa-graduation-cap"></i>${candidate.education}</span>
+                <span><i class="fas fa-money-bill-wave"></i>${candidate.salary}</span>
+              </div>
+
+              <div class="candidate-card__skills">
+                ${candidate.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+              </div>
+
+              <div class="candidate-card__actions">
+                <a href="login.html" class="btn btn--primary btn--sm">
+                  <i class="fas fa-envelope"></i>&nbsp;Contact
+                </a>
+                <a href="login.html" class="btn btn--outline-primary btn--sm">
+                  <i class="far fa-user"></i>&nbsp;View Profile
+                </a>
+              </div>
+            </div>
+          </article>
+        `).join('');
+      };
+
+      const handleSearch = () => {
+        const q = searchInput.value.toLowerCase().trim();
+        currentCandidates = q
+          ? candidates.filter(c =>
+              c.name.toLowerCase().includes(q) ||
+              c.title.toLowerCase().includes(q) ||
+              c.skills.some(s => s.toLowerCase().includes(q)) ||
+              c.location.toLowerCase().includes(q)
+            )
+          : [...candidates];
+        renderCandidates(currentCandidates);
+      };
+
+      renderCandidates(currentCandidates);
+
+      searchInput.addEventListener('input', handleSearch);
+      document.querySelector('#candidateSearchBtn').addEventListener('click', handleSearch);
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSearch();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

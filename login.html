@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to your CareerHub account to apply for jobs and manage your profile.">
+  <title>Login - CareerHub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+
+  <!-- Page-specific styles -->
+  <style>
+    .auth-section {
+      min-height: calc(100vh - var(--header-main-height));
+      padding: var(--space-14) var(--space-4) var(--space-16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-body);
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 460px;
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: var(--space-10);
+      border: 1px solid var(--color-gray-200);
+    }
+
+    .auth-card__header {
+      text-align: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .auth-card__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-lg);
+      background: rgba(0, 180, 216, 0.1);
+      margin: 0 auto var(--space-4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-xl);
+      color: var(--color-secondary);
+    }
+
+    .auth-card__title {
+      font-size: var(--fs-2xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .auth-card__subtext {
+      font-size: var(--fs-sm);
+      color: var(--color-gray-500);
+    }
+
+    .auth-card__divider {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin: var(--space-6) 0;
+      color: var(--color-gray-500);
+      font-size: var(--fs-sm);
+    }
+
+    .auth-card__divider::before,
+    .auth-card__divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-gray-200);
+    }
+
+    .social-btns {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .social-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--color-gray-300);
+      border-radius: var(--radius-md);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-medium);
+      color: var(--color-gray-700);
+      background: var(--color-white);
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+
+    .social-btn:hover {
+      border-color: var(--color-secondary);
+      background: var(--color-gray-50);
+      transform: translateY(-1px);
+    }
+
+    .auth-card__footer {
+      text-align: center;
+      margin-top: var(--space-6);
+      font-size: var(--fs-sm);
+      color: var(--color-gray-600);
+    }
+
+    .auth-card__footer a {
+      color: var(--color-secondary-dark);
+      font-weight: var(--fw-semibold);
+    }
+
+    .auth-card__footer a:hover {
+      text-decoration: underline;
+    }
+
+    .remember-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-5);
+      font-size: var(--fs-sm);
+    }
+
+    .remember-row label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--color-gray-600);
+      cursor: pointer;
+    }
+
+    .remember-row input[type="checkbox"] {
+      accent-color: var(--color-secondary);
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      color: var(--color-secondary-dark);
+      font-weight: var(--fw-medium);
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--fs-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .alert--danger {
+      background: var(--color-danger-light);
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .alert--success {
+      background: var(--color-success-light);
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    @media (max-width: 480px) {
+      .auth-card {
+        padding: var(--space-8) var(--space-6);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link">Home</a>
+          <a href="jobs.html" class="nav__link">Find Jobs</a>
+          <a href="companies.html" class="nav__link">Companies</a>
+          <a href="candidates.html" class="nav__link">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         LOGIN SECTION
+         ============================================================ -->
+    <section class="auth-section">
+      <div class="auth-card">
+        <div class="auth-card__header">
+          <div class="auth-card__icon">
+            <i class="fas fa-sign-in-alt"></i>
+          </div>
+          <h2 class="auth-card__title">Welcome Back</h2>
+          <p class="auth-card__subtext">Log in to continue your job hunt</p>
+        </div>
+
+        <!-- Social Login Buttons -->
+        <div class="social-btns mb-6">
+          <button type="button" class="social-btn">
+            <i class="fab fa-google text-danger" style="color: #DB4437;"></i>
+            Continue with Google
+          </button>
+          <button type="button" class="social-btn">
+            <i class="fab fa-linkedin-in" style="color: #0077b5;"></i>
+            Continue with LinkedIn
+          </button>
+        </div>
+
+        <div class="auth-card__divider">or use your email</div>
+
+        <!-- Message container for JS feedback -->
+        <div id="authMessage"></div>
+
+        <!-- Login Form -->
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="loginEmail">Email Address</label>
+            <div class="form-input-icon">
+              <i class="fas fa-envelope"></i>
+              <input class="form-input" type="email" id="loginEmail" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="loginPassword">Password</label>
+            <div class="form-input-icon">
+              <i class="fas fa-lock"></i>
+              <input class="form-input" type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+          </div>
+
+          <div class="remember-row">
+            <label title="Remember me">
+              <input type="checkbox" id="rememberMe" checked>
+              Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg btn--block">
+            <i class="fas fa-sign-in-alt"></i>&nbsp;Login
+          </button>
+        </form>
+
+        <div class="auth-card__footer">
+          Don't have an account? <a href="register.html">Sign up free</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

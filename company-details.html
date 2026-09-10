@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about a company's culture, team, and open positions on CareerHub.">
+  <title>Company Details - CareerHub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+
+  <!-- Page-specific styles -->
+  <style>
+    .company-detail {
+      padding: var(--space-10) 0;
+    }
+
+    /* Company Hero Card */
+    .company-hero {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-gray-200);
+      box-shadow: var(--shadow-card);
+      margin-bottom: var(--space-6);
+      overflow: hidden;
+    }
+
+    .company-hero__banner {
+      height: 180px;
+      background: var(--bg-hero);
+      position: relative;
+    }
+
+    .company-hero__banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .company-hero__body {
+      padding: 0 var(--space-8) var(--space-8);
+      margin-top: -50px;
+      position: relative;
+    }
+
+    .company-hero__main {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .company-hero__logo {
+      width: 110px;
+      height: 110px;
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      border: 4px solid var(--color-white);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: var(--space-2);
+    }
+
+    .company-hero__info {
+      flex: 1;
+      min-width: 200px;
+      padding-top: var(--space-8);
+    }
+
+    .company-hero__name {
+      font-size: var(--fs-2xl);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-2);
+    }
+
+    .company-hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      font-size: var(--fs-sm);
+      color: var(--color-gray-500);
+    }
+
+    .company-hero__meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .company-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-gray-200);
+    }
+
+    .company-stat__value {
+      font-family: var(--font-heading);
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-bold);
+      color: var(--color-primary);
+    }
+
+    .company-stat__label {
+      font-size: var(--fs-xs);
+      color: var(--color-gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: var(--space-1);
+    }
+
+    /* Content Grid */
+    .company-detail__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .detail-section {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-gray-200);
+      padding: var(--space-8);
+      margin-bottom: var(--space-6);
+      box-shadow: var(--shadow-card);
+    }
+
+    .detail-section__title {
+      font-size: var(--fs-lg);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: 2px solid var(--color-gray-100);
+    }
+
+    /* Info Cards */
+    .info-card {
+      margin-bottom: var(--space-6);
+    }
+
+    .info-card__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+
+    .info-card__row:last-child {
+      border-bottom: none;
+    }
+
+    .info-card__label {
+      font-size: var(--fs-sm);
+      color: var(--color-gray-500);
+    }
+
+    .info-card__value {
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-semibold);
+      color: var(--color-primary);
+    }
+
+    @media (max-width: 900px) {
+      .company-detail__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .company-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link">Home</a>
+          <a href="jobs.html" class="nav__link">Find Jobs</a>
+          <a href="companies.html" class="nav__link nav__link--active">Companies</a>
+          <a href="candidates.html" class="nav__link">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         PAGE HEADER
+         ============================================================ -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title" id="companyPageTitle">Company Profile</h1>
+        <nav class="page-header__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="separator"><i class="fas fa-angle-right"></i></span>
+          <a href="companies.html">Companies</a>
+          <span class="separator"><i class="fas fa-angle-right"></i></span>
+          <span>Company Details</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMPANY DETAIL SECTION
+         ============================================================ -->
+    <section class="container company-detail">
+
+      <!-- ============ COMPANY HERO CARD ============ -->
+      <div class="company-hero">
+        <div class="company-hero__banner"></div>
+        <div class="company-hero__body">
+          <div class="company-hero__main">
+            <div class="company-hero__logo">
+              <img id="companyLogo" src="https://via.placeholder.com/100" alt="Company logo">
+            </div>
+            <div class="company-hero__info">
+              <h2 class="company-hero__name">
+                <span id="companyName">Company Name</span>
+                <i class="fas fa-badge-check" style="color: var(--color-secondary); font-size: var(--fs-md);" title="Verified company"></i>
+              </h2>
+              <div class="company-hero__meta">
+                <span class="company-hero__meta-item"><i class="fas fa-building"></i><span id="companyIndustry">Technology</span></span>
+                <span class="company-hero__meta-item"><i class="fas fa-map-marker-alt"></i><span id="companyLocation">Location</span></span>
+                <span class="company-hero__meta-item"><i class="fas fa-globe"></i><a href="#" class="text-secondary">Official Website</a></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Stats -->
+          <div class="company-stats">
+            <div>
+              <p class="company-stat__value" id="statEmployees">500-1000</p>
+              <p class="company-stat__label">Employees</p>
+            </div>
+            <div>
+              <p class="company-stat__value" id="statJobs">0</p>
+              <p class="company-stat__label">Open Positions</p>
+            </div>
+            <div>
+              <p class="company-stat__value">
+                <span id="statRating">4.5</span>
+                <i class="fas fa-star" style="color: var(--color-warning); font-size: var(--fs-sm);"></i>
+              </p>
+              <p class="company-stat__label">Company Rating</p>
+            </div>
+            <div>
+              <p class="company-stat__value">95%</p>
+              <p class="company-stat__label">Recommend</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ CONTENT GRID ============ -->
+      <div class="company-detail__grid">
+
+        <!-- Main Column -->
+        <div>
+          <!-- About Section -->
+          <div class="detail-section">
+            <h3 class="detail-section__title">About the Company</h3>
+            <p id="companyAbout">Company description goes here.</p>
+            <p>
+              As part of our team, you will collaborate with some of the brightest minds in the industry, working
+              on meaningful products that impact millions of users worldwide. We believe in fostering a culture
+              of innovation, inclusivity, and continuous learning.
+            </p>
+            <p>
+              Our employees enjoy competitive benefits, flexible work arrangements, generous learning budgets,
+              and clear career progression paths. We are always looking for passionate people who want to grow
+              with us.
+            </p>
+          </div>
+
+          <!-- Job Listings Section -->
+          <div class="detail-section">
+            <h3 class="detail-section__title">Open Positions <span class="badge badge--primary" id="openJobsBadge">0 jobs</span></h3>
+            <div id="companyJobsGrid" style="display: grid; gap: var(--space-4);">
+              <!-- Jobs injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Column -->
+        <div>
+          <!-- Contact/Info Card -->
+          <div class="card">
+            <div class="info-card">
+              <div class="info-card__row">
+                <span class="info-card__label"><i class="fas fa-map-marker-alt text-secondary"></i>&nbsp;Founded</span>
+                <span class="info-card__value">2010</span>
+              </div>
+              <div class="info-card__row">
+                <span class="info-card__label"><i class="fas fa-users text-secondary"></i>&nbsp;Employees</span>
+                <span class="info-card__value" id="cardEmployees">-</span>
+              </div>
+              <div class="info-card__row">
+                <span class="info-card__label"><i class="fas fa-industry text-secondary"></i>&nbsp;Industry</span>
+                <span class="info-card__value" id="cardIndustry">-</span>
+              </div>
+              <div class="info-card__row">
+                <span class="info-card__label"><i class="fas fa-globe-asia text-secondary"></i>&nbsp;Headquarters</span>
+                <span class="info-card__value" id="cardHeadquarters">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo" aria-label="CareerHub Home">
+            <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+            Career<span>Hub</span>
+          </a>
+          <p class="footer__brand-desc">
+            CareerHub is India's leading job and placement portal, helping professionals find rewarding careers and helping companies hire exceptional talent.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- For Candidates -->
+        <div>
+          <h4 class="footer__title">For Candidates</h4>
+          <ul>
+            <li><a href="jobs.html" class="footer__link">Find Jobs</a></li>
+            <li><a href="jobs.html" class="footer__link">Browse Jobs</a></li>
+            <li><a href="blog.html" class="footer__link">Career Advice</a></li>
+            <li><a href="blog.html" class="footer__link">Career Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- For Employers -->
+        <div>
+          <h4 class="footer__title">For Employers</h4>
+          <ul>
+            <li><a href="post-job.html" class="footer__link">Post a Job</a></li>
+            <li><a href="#" class="footer__link">Employer Dashboard</a></li>
+            <li><a href="login.html" class="footer__link">Employer Login</a></li>
+            <li><a href="#" class="footer__link">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="footer__title">Resources</h4>
+          <ul>
+            <li><a href="#" class="footer__link">FAQs</a></li>
+            <li><a href="#" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="footer__link">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__newsletter">
+          <h4 class="footer__title">Newsletter</h4>
+          <p class="footer__newsletter-desc">Subscribe for the latest job alerts and career tips.</p>
+          <form class="footer__newsletter-form" novalidate>
+            <input
+              type="email"
+              class="footer__newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+          <p class="footer__newsletter-msg" hidden></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 CareerHub. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+    /* ---- Company Details Page Logic ---- */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Read company id from URL
+      const params = new URLSearchParams(window.location.search);
+      const companyId = params.get('id');
+      const company = PortalData.getCompanyById(companyId);
+
+      if (!company) {
+        document.querySelector('#companyName').textContent = 'Company Not Found';
+        return;
+      }
+
+      // Populate header
+      document.querySelector('#companyPageTitle').textContent = company.name;
+      document.title = company.name + ' - CareerHub';
+      document.querySelector('#companyName').textContent = company.name;
+      document.querySelector('#companyIndustry').textContent = company.industry;
+      document.querySelector('#companyLocation').textContent = company.location;
+      document.querySelector('#companyAbout').textContent = company.description;
+      document.querySelector('#companyLogo').src = company.logo;
+      document.querySelector('#companyLogo').alt = company.name + ' logo';
+
+      // Stats
+      document.querySelector('#statEmployees').textContent = company.employees;
+      document.querySelector('#statJobs').textContent = company.openJobs;
+      document.querySelector('#statRating').textContent = company.rating;
+
+      // Sidebar
+      document.querySelector('#cardEmployees').textContent = company.employees;
+      document.querySelector('#cardIndustry').textContent = company.industry;
+      document.querySelector('#cardHeadquarters').textContent = company.location;
+      document.querySelector('#openJobsBadge').textContent = company.openJobs + ' jobs';
+
+      // Open positions for this company
+      const companyJobs = PortalData.getJobsByCompany(company.id);
+      const jobsGrid = document.querySelector('#companyJobsGrid');
+      document.querySelector('#statJobs').textContent = companyJobs.length || company.openJobs;
+
+      if (jobsGrid) {
+        if (companyJobs.length > 0) {
+          jobsGrid.innerHTML = companyJobs.map(renderJobCard).join('');
+        } else {
+          jobsGrid.innerHTML = `
+            <div class="text-center">
+              <i class="fas fa-briefcase" style="font-size: 2.5rem; color: var(--color-gray-300); margin-bottom: var(--space-4);"></i>
+              <h4>No open positions currently</h4>
+              <p class="text-sm text-muted">Check back later for new opportunities at this company.</p>
+            </div>
+          `;
+        }
+        restoreBookmarks();
+      }
+    });
+  </script>
+</body>
+</html>

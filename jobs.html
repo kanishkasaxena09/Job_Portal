@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse thousands of job listings from top companies across all industries.">
+  <title>Find Jobs - CareerHub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+
+  <!-- Page-specific styles -->
+  <style>
+    .jobs-layout {
+      display: flex;
+      gap: var(--space-8);
+      padding: var(--space-10) 0;
+    }
+
+    .jobs-layout__sidebar {
+      flex-shrink: 0;
+      width: var(--sidebar-width);
+    }
+
+    .jobs-layout__content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .jobs-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .jobs-toolbar__count {
+      font-size: var(--fs-md);
+      color: var(--color-gray-600);
+    }
+
+    .jobs-toolbar__count strong {
+      color: var(--color-primary);
+    }
+
+    .jobs-toolbar__sort {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--fs-sm);
+      color: var(--color-gray-600);
+    }
+
+    .jobs-toolbar__sort select {
+      border: 1px solid var(--color-gray-300);
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--fs-sm);
+      background: var(--color-white);
+      cursor: pointer;
+    }
+
+    .jobs-toolbar__sort select:focus {
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+    }
+
+    #jobsGrid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .sidebar-select {
+      width: 100%;
+      border: 1px solid var(--color-gray-300);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      font-size: var(--fs-sm);
+      background: var(--color-white);
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .sidebar-select:focus {
+      outline: none;
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+    }
+
+    .filter-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--color-gray-200);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: var(--space-16) 0;
+    }
+
+    .no-results__icon {
+      font-size: 3rem;
+      color: var(--color-gray-300);
+      margin-bottom: var(--space-4);
+    }
+
+    .no-results h3 {
+      margin-bottom: var(--space-2);
+    }
+
+    .pagination__btn:disabled,
+    .pagination__btn:disabled:hover {
+      opacity: 0.45;
+      cursor: default;
+      background: var(--color-white);
+      color: var(--color-gray-600);
+      border-color: var(--color-gray-300);
+    }
+
+    .mobile-filter-toggle {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .jobs-layout {
+        flex-direction: column;
+      }
+
+      .jobs-layout__sidebar {
+        width: 100%;
+      }
+
+      .mobile-filter-toggle {
+        display: inline-flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .sidebar--open {
+        display: block;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .jobs-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link">Home</a>
+          <a href="jobs.html" class="nav__link nav__link--active">Find Jobs</a>
+          <a href="companies.html" class="nav__link">Companies</a>
+          <a href="candidates.html" class="nav__link">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         PAGE HEADER
+         ============================================================ -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Find Your Dream Job</h1>
+        <nav class="page-header__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="separator"><i class="fas fa-angle-right"></i></span>
+          <span>Find Jobs</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         JOBS LISTING SECTION
+         ============================================================ -->
+    <section class="container jobs-layout">
+
+      <!-- ============ SIDEBAR FILTERS ============ -->
+      <aside class="jobs-layout__sidebar" aria-label="Job filters">
+
+        <!-- Mobile Filter Toggle -->
+        <button class="btn btn--dark mobile-filter-toggle mb-4" id="filterToggle" aria-expanded="false" aria-controls="jobSidebar">
+          <i class="fas fa-filter"></i>&nbsp;Filter Jobs
+        </button>
+
+        <div class="sidebar" id="jobSidebar">
+          <h3 class="sidebar__title"><i class="fas fa-sliders-h"></i>&nbsp;Filters</h3>
+
+          <!-- Search Keyword -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Search Keyword</h4>
+            <div class="form-input-icon">
+              <i class="fas fa-search"></i>
+              <input class="form-input" type="text" id="filterKeyword" placeholder="Job title, skill or company">
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Location</h4>
+            <div class="form-input-icon">
+              <i class="fas fa-map-marker-alt"></i>
+              <input class="form-input" type="text" id="filterLocation" placeholder="City or Remote">
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Category</h4>
+            <select class="sidebar-select" id="filterCategory">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+
+          <!-- Job Type -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Job Type</h4>
+            <label class="filter-option">
+              <input type="checkbox" name="jobType" value="Full-time">
+              Full Time
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="jobType" value="Part-time">
+              Part Time
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="jobType" value="Internship">
+              Internship
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="jobType" value="Freelance">
+              Freelance
+            </label>
+          </div>
+
+          <!-- Work Mode -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Work Mode</h4>
+            <label class="filter-option">
+              <input type="checkbox" name="workMode" value="Remote">
+              Remote
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="workMode" value="Hybrid">
+              Hybrid
+            </label>
+            <label class="filter-option">
+              <input type="checkbox" name="workMode" value="On-site">
+              On Site
+            </label>
+          </div>
+
+          <!-- Experience -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Experience</h4>
+            <select class="sidebar-select" id="filterExperience">
+              <option value="">Any Experience</option>
+              <option value="Fresher">Fresher</option>
+              <option value="0-2 Years">0-2 Years</option>
+              <option value="3-5 Years">3-5 Years</option>
+              <option value="5+ Years">5+ Years</option>
+            </select>
+          </div>
+
+          <!-- Salary Range -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Salary Range</h4>
+            <select class="sidebar-select" id="filterSalary">
+              <option value="">Any Salary</option>
+              <option value="0-5">Up to ₹5 Lakhs</option>
+              <option value="5-10">₹5 - 10 Lakhs</option>
+              <option value="10-20">₹10 - 20 Lakhs</option>
+              <option value="20-40">₹20 - 40 Lakhs</option>
+              <option value="40-inf">₹40 Lakhs+</option>
+            </select>
+          </div>
+
+          <!-- Date Posted -->
+          <div class="sidebar__group">
+            <h4 class="sidebar__group-title">Date Posted</h4>
+            <select class="sidebar-select" id="filterDate">
+              <option value="">Any Time</option>
+              <option value="1">Last 24 Hours</option>
+              <option value="7">Last 7 Days</option>
+              <option value="30">Last 30 Days</option>
+            </select>
+          </div>
+
+          <!-- Filter Actions -->
+          <div class="filter-actions">
+            <button class="btn btn--primary btn--block" id="applyFilters">
+              <i class="fas fa-filter"></i>&nbsp;Apply Filters
+            </button>
+            <button class="btn btn--ghost btn--block" id="clearFilters">
+              <i class="fas fa-times-circle"></i>&nbsp;Clear
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ============ JOB LISTINGS ============ -->
+      <div class="jobs-layout__content">
+        <div class="jobs-toolbar">
+          <p class="jobs-toolbar__count">Showing <strong id="jobsCount">0</strong> jobs</p>
+
+          <div class="jobs-toolbar__sort">
+            <label for="sortSelect">Sort by:</label>
+            <select id="sortSelect">
+              <option value="latest">Newest First</option>
+              <option value="highest-salary">Highest Salary</option>
+              <option value="lowest-salary">Lowest Salary</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="jobsGrid">
+          <!-- Jobs injected by js/data.js -->
+        </div>
+
+        <!-- Pagination -->
+        <nav class="pagination" id="pagination" aria-label="Pagination"></nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA SECTION
+         ============================================================ -->
+    <section class="cta" aria-label="Call to action">
+      <div class="container">
+        <h2 class="cta__title">Can't Find the Right Job?</h2>
+        <p class="cta__desc">Create a profile and let recruiters find you. Get recommendations tailored to your skills.</p>
+        <div class="cta__actions">
+          <a href="register.html" class="btn btn--primary btn--lg"><i class="fas fa-user-plus"></i>&nbsp;Create Your Profile</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo" aria-label="CareerHub Home">
+            <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+            Career<span>Hub</span>
+          </a>
+          <p class="footer__brand-desc">
+            CareerHub is India's leading job and placement portal, helping professionals find rewarding careers and helping companies hire exceptional talent.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- For Candidates -->
+        <div>
+          <h4 class="footer__title">For Candidates</h4>
+          <ul>
+            <li><a href="jobs.html" class="footer__link">Find Jobs</a></li>
+            <li><a href="jobs.html" class="footer__link">Browse Jobs</a></li>
+            <li><a href="blog.html" class="footer__link">Career Advice</a></li>
+            <li><a href="blog.html" class="footer__link">Career Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- For Employers -->
+        <div>
+          <h4 class="footer__title">For Employers</h4>
+          <ul>
+            <li><a href="post-job.html" class="footer__link">Post a Job</a></li>
+            <li><a href="#" class="footer__link">Employer Dashboard</a></li>
+            <li><a href="login.html" class="footer__link">Employer Login</a></li>
+            <li><a href="#" class="footer__link">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="footer__title">Resources</h4>
+          <ul>
+            <li><a href="#" class="footer__link">FAQs</a></li>
+            <li><a href="#" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="footer__link">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__newsletter">
+          <h4 class="footer__title">Newsletter</h4>
+          <p class="footer__newsletter-desc">Subscribe for the latest job alerts and career tips.</p>
+          <form class="footer__newsletter-form" novalidate>
+            <input
+              type="email"
+              class="footer__newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+          <p class="footer__newsletter-msg" hidden></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 CareerHub. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterToggle = document.querySelector('#filterToggle');
+      const sidebar = document.querySelector('#jobSidebar');
+      if (filterToggle && sidebar) {
+        filterToggle.addEventListener('click', () => {
+          const open = sidebar.classList.toggle('sidebar--open');
+          filterToggle.setAttribute('aria-expanded', String(open));
+        });
+      }
+
+      const categorySelect = document.querySelector('#filterCategory');
+      if (categorySelect) {
+        PORTAL_DATA.categories.forEach(cat => {
+          if (cat.isMore) return;
+          const option = document.createElement('option');
+          option.value = cat.id;
+          option.textContent = cat.name;
+          categorySelect.appendChild(option);
+        });
+      }
+
+      const PAGE_SIZE = 6;
+
+      const state = {
+        keyword: '',
+        location: '',
+        category: '',
+        jobTypes: [],
+        workModes: [],
+        experience: '',
+        salary: '',
+        datePosted: 0,
+        sort: 'latest',
+        page: 1,
+      };
+
+      const keywordEl = document.querySelector('#filterKeyword');
+      const locationEl = document.querySelector('#filterLocation');
+      const categoryEl = document.querySelector('#filterCategory');
+      const experienceEl = document.querySelector('#filterExperience');
+      const salaryEl = document.querySelector('#filterSalary');
+      const dateEl = document.querySelector('#filterDate');
+      const sortEl = document.querySelector('#sortSelect');
+      const countEl = document.querySelector('#jobsCount');
+
+      const allJobs = () => PORTAL_DATA.jobs.slice();
+
+      const parseSalary = (key) => {
+        if (key === '40-inf') return [4000000, Infinity];
+        const [min, max] = key.split('-').map(Number);
+        return [min * 100000, max * 100000];
+      };
+
+      const getFilteredJobs = () => {
+        let jobs = allJobs();
+
+        if (state.keyword) {
+          jobs = PortalData.searchJobs(state.keyword);
+        }
+
+        if (state.location) {
+          const loc = state.location.toLowerCase();
+          jobs = jobs.filter(job => job.location.toLowerCase().includes(loc));
+        }
+
+        if (state.category) {
+          jobs = jobs.filter(job => job.category === state.category);
+        }
+
+        if (state.jobTypes.length > 0) {
+          jobs = jobs.filter(job => state.jobTypes.includes(job.type));
+        }
+
+        if (state.workModes.length > 0) {
+          jobs = jobs.filter(job => state.workModes.includes(job.workStyle));
+        }
+
+        if (state.experience) {
+          jobs = jobs.filter(job => job.experience === state.experience);
+        }
+
+        if (state.salary) {
+          const [min, max] = parseSalary(state.salary);
+          jobs = jobs.filter(job => {
+            if (max === Infinity) return job.salaryMax >= min;
+            return job.salaryMin <= max && job.salaryMax >= min;
+          });
+        }
+
+        if (state.datePosted > 0) {
+          const cutoff = Date.now() - state.datePosted * 24 * 60 * 60 * 1000;
+          jobs = jobs.filter(job => new Date(job.posted).getTime() >= cutoff);
+        }
+
+        if (state.sort === 'highest-salary') {
+          jobs.sort((a, b) => b.salaryMax - a.salaryMax);
+        } else if (state.sort === 'lowest-salary') {
+          jobs.sort((a, b) => a.salaryMin - b.salaryMin);
+        } else {
+          jobs.sort((a, b) => new Date(b.posted) - new Date(a.posted));
+        }
+
+        return jobs;
+      };
+
+      const renderPagination = (totalPages) => {
+        const pagination = document.querySelector('#pagination');
+        if (!pagination) return;
+        pagination.innerHTML = '';
+        if (totalPages < 2) return;
+
+        const makeBtn = (label, page, opts) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'pagination__btn' + (opts.active ? ' pagination__btn--active' : '');
+          btn.innerHTML = label;
+          btn.setAttribute('aria-label', opts.label || `Go to page ${page}`);
+          if (opts.disabled) {
+            btn.disabled = true;
+          } else if (page !== state.page) {
+            btn.addEventListener('click', () => {
+              state.page = page;
+              render();
+              const layout = document.querySelector('.jobs-layout');
+              if (layout) {
+                const offset = layout.getBoundingClientRect().top + window.scrollY - 90;
+                window.scrollTo({ top: Math.max(offset, 0), behavior: 'smooth' });
+              }
+            });
+          }
+          return btn;
+        };
+
+        pagination.appendChild(makeBtn('<i class="fas fa-chevron-left"></i>', state.page - 1, { disabled: state.page === 1, label: 'Previous page' }));
+
+        for (let i = 1; i <= totalPages; i++) {
+          pagination.appendChild(makeBtn(String(i), i, { active: i === state.page }));
+        }
+
+        pagination.appendChild(makeBtn('<i class="fas fa-chevron-right"></i>', state.page + 1, { disabled: state.page === totalPages, label: 'Next page' }));
+      };
+
+      const render = () => {
+        const filtered = getFilteredJobs();
+        const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+        if (state.page > totalPages) state.page = totalPages;
+
+        const start = (state.page - 1) * PAGE_SIZE;
+        const pageJobs = filtered.slice(start, start + PAGE_SIZE);
+
+        renderJobCards('#jobsGrid', pageJobs);
+        if (countEl) countEl.textContent = filtered.length;
+        renderPagination(totalPages);
+        restoreBookmarks();
+      };
+
+      const readStateFromInputs = () => {
+        state.keyword = keywordEl ? keywordEl.value.trim() : '';
+        state.location = locationEl ? locationEl.value.trim() : '';
+        state.category = categoryEl ? categoryEl.value : '';
+        state.experience = experienceEl ? experienceEl.value : '';
+        state.salary = salaryEl ? salaryEl.value : '';
+        state.datePosted = dateEl ? Number(dateEl.value) : 0;
+        state.jobTypes = Array.from(document.querySelectorAll('input[name="jobType"]:checked')).map(cb => cb.value);
+        state.workModes = Array.from(document.querySelectorAll('input[name="workMode"]:checked')).map(cb => cb.value);
+        state.sort = sortEl ? sortEl.value : 'latest';
+        state.page = 1;
+        render();
+      };
+
+      if (keywordEl) {
+        keywordEl.addEventListener('input', () => {
+          state.keyword = keywordEl.value.trim();
+          state.page = 1;
+          render();
+        });
+      }
+
+      if (locationEl) {
+        locationEl.addEventListener('input', () => {
+          state.location = locationEl.value.trim();
+          state.page = 1;
+          render();
+        });
+      }
+
+      if (categoryEl) categoryEl.addEventListener('change', () => { state.category = categoryEl.value; state.page = 1; render(); });
+      if (experienceEl) experienceEl.addEventListener('change', () => { state.experience = experienceEl.value; state.page = 1; render(); });
+      if (salaryEl) salaryEl.addEventListener('change', () => { state.salary = salaryEl.value; state.page = 1; render(); });
+      if (dateEl) dateEl.addEventListener('change', () => { state.datePosted = Number(dateEl.value); state.page = 1; render(); });
+      if (sortEl) sortEl.addEventListener('change', () => { state.sort = sortEl.value; state.page = 1; render(); });
+
+      document.querySelectorAll('input[name="jobType"]').forEach(cb => {
+        cb.addEventListener('change', readStateFromInputs);
+      });
+
+      document.querySelectorAll('input[name="workMode"]').forEach(cb => {
+        cb.addEventListener('change', readStateFromInputs);
+      });
+
+      const applyBtn = document.querySelector('#applyFilters');
+      if (applyBtn) {
+        applyBtn.addEventListener('click', () => {
+          readStateFromInputs();
+          if (sidebar) sidebar.classList.remove('sidebar--open');
+          if (filterToggle) filterToggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      const clearBtn = document.querySelector('#clearFilters');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          if (keywordEl) keywordEl.value = '';
+          if (locationEl) locationEl.value = '';
+          if (categoryEl) categoryEl.value = '';
+          if (experienceEl) experienceEl.value = '';
+          if (salaryEl) salaryEl.value = '';
+          if (dateEl) dateEl.value = '';
+          if (sortEl) sortEl.value = 'latest';
+          document.querySelectorAll('input[name="jobType"]').forEach(cb => { cb.checked = false; });
+          document.querySelectorAll('input[name="workMode"]').forEach(cb => { cb.checked = false; });
+          readStateFromInputs();
+        });
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const urlKeyword = params.get('q') || '';
+      const urlLocation = params.get('location') || '';
+      const urlCategory = params.get('category') || '';
+
+      if (keywordEl) keywordEl.value = urlKeyword;
+      if (locationEl) locationEl.value = urlLocation;
+      if (categoryEl && urlCategory) categoryEl.value = urlCategory;
+
+      state.keyword = urlKeyword;
+      state.location = urlLocation;
+      state.category = categoryEl ? categoryEl.value : '';
+
+      render();
+    });
+  </script>
+</body>
+</html>

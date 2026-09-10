@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Post a job opening and reach thousands of qualified candidates on CareerHub.">
+  <title>Post a Job - CareerHub</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300b4d8'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' font-family='Arial' font-weight='bold' fill='white'%3EJ%3C/text%3E%3C/svg%3E">
+
+  <!-- Page-specific styles -->
+  <style>
+    .post-job-section {
+      padding: var(--space-10) 0;
+    }
+
+    .post-job-card {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: var(--space-10);
+      border: 1px solid var(--color-gray-200);
+    }
+
+    .post-job-card__header {
+      text-align: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .post-job-card__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-lg);
+      background: rgba(0, 180, 216, 0.1);
+      margin: 0 auto var(--space-4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-xl);
+      color: var(--color-secondary);
+    }
+
+    .post-job-card__title {
+      font-size: var(--fs-2xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .post-job-card__subtext {
+      font-size: var(--fs-sm);
+      color: var(--color-gray-500);
+    }
+
+    .form-section-title {
+      font-size: var(--fs-base);
+      font-weight: var(--fw-bold);
+      color: var(--color-primary);
+      margin: var(--space-8) 0 var(--space-5);
+      padding-bottom: var(--space-3);
+      border-bottom: 2px solid var(--color-gray-100);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .form-section-title i {
+      color: var(--color-secondary);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .file-upload {
+      border: 2px dashed var(--color-gray-300);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      background: var(--color-gray-50);
+    }
+
+    .file-upload:hover {
+      border-color: var(--color-secondary);
+      background: rgba(0, 180, 216, 0.05);
+    }
+
+    .file-upload i {
+      font-size: var(--fs-3xl);
+      color: var(--color-gray-400);
+      margin-bottom: var(--space-3);
+    }
+
+    .file-upload p {
+      font-size: var(--fs-sm);
+      color: var(--color-gray-500);
+      margin-bottom: 0;
+    }
+
+    .alert {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--fs-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .alert--success {
+      background: var(--color-success-light);
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    @media (max-width: 576px) {
+      .post-job-card {
+        padding: var(--space-8) var(--space-5);
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="header">
+
+    <!-- ====== Top Information Bar ====== -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <div class="topbar__info">
+          <span class="topbar__address"><i class="fas fa-map-marker-alt"></i> Pragati Nagar, Hyderabad, Telangana</span>
+          <a href="mailto:info@careerhub.com"><i class="fas fa-envelope"></i> info@careerhub.com</a>
+          <a href="tel:+914040123456"><i class="fas fa-phone-alt"></i> +91 40 4012 3456</a>
+        </div>
+        <div class="topbar__links">
+          <a href="post-job.html"><i class="fas fa-building"></i> For Employers</a>
+          <a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a>
+          <span class="topbar__divider" aria-hidden="true"></span>
+          <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Main Navigation ====== -->
+    <div class="header__main">
+      <div class="container header__inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo" aria-label="CareerHub Home">
+          <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+          Career<span>Hub</span>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="index.html" class="nav__link">Home</a>
+          <a href="jobs.html" class="nav__link">Find Jobs</a>
+          <a href="companies.html" class="nav__link">Companies</a>
+          <a href="candidates.html" class="nav__link">Candidates</a>
+
+          <!-- Pages Dropdown -->
+          <div class="nav__dropdown">
+            <button class="nav__link nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              Pages <i class="fas fa-chevron-down nav__caret"></i>
+            </button>
+            <ul class="nav__dropdown-menu">
+              <li><a href="jobs.html"><i class="fas fa-briefcase"></i> Job Listing</a></li>
+              <li><a href="job-details.html"><i class="fas fa-file-alt"></i> Job Details</a></li>
+              <li><a href="companies.html"><i class="fas fa-building"></i> Companies</a></li>
+              <li><a href="company-details.html"><i class="fas fa-landmark"></i> Company Details</a></li>
+              <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+              <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+              <li><a href="post-job.html"><i class="fas fa-plus-circle"></i> Post a Job</a></li>
+            </ul>
+          </div>
+
+          <a href="blog.html" class="nav__link">Blog</a>
+          <a href="#" class="nav__link">Contact Us</a>
+
+          <!-- CTA Button -->
+          <a href="post-job.html" class="btn btn--primary header__cta">
+            <i class="fas fa-plus"></i>&nbsp;Post a Job
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+          <span class="mobile-toggle__bar"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         POST JOB SECTION
+         ============================================================ -->
+    <section class="post-job-section" style="background: var(--bg-body);">
+      <div class="container">
+        <div class="post-job-card">
+          <div class="post-job-card__header">
+            <div class="post-job-card__icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h2 class="post-job-card__title">Post a Job</h2>
+            <p class="post-job-card__subtext">Fill in the details below to publish your job opening</p>
+          </div>
+
+          <!-- Success message container -->
+          <div id="postJobMessage"></div>
+
+          <!-- Post Job Form -->
+          <form id="postJobForm" novalidate>
+
+            <!-- Section 1: Job Details -->
+            <h3 class="form-section-title"><i class="fas fa-info-circle"></i> Job Details</h3>
+
+            <div class="form-group">
+              <label class="form-label" for="jobTitle">Job Title *</label>
+              <input class="form-input" type="text" id="jobTitle" placeholder="e.g. Senior Frontend Developer" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="jobCategory">Category *</label>
+                <select class="form-select" id="jobCategory" required>
+                  <option value="">Select category</option>
+                  <option value="software">Software Development</option>
+                  <option value="design">Design & Creative</option>
+                  <option value="marketing">Marketing & Sales</option>
+                  <option value="finance">Finance & Accounting</option>
+                  <option value="engineering">Engineering</option>
+                  <option value="hr">Human Resources</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="education">Education</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="jobType">Job Type *</label>
+                <select class="form-select" id="jobType" required>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Part-time">Part-time</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Remote">Remote</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="jobLocation">Location *</label>
+                <input class="form-input" type="text" id="jobLocation" placeholder="e.g. Bangalore, India" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="jobExperience">Experience Level</label>
+                <select class="form-select" id="jobExperience">
+                  <option value="Fresher">Fresher</option>
+                  <option value="1-3 years">1-3 years</option>
+                  <option value="3-5 years">3-5 years</option>
+                  <option value="5+ years">5+ years</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="jobSalaryMin">Min Salary (per year)</label>
+                <input class="form-input" type="number" id="jobSalaryMin" placeholder="e.g. 800000" min="0">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="jobSalaryMax">Max Salary (per year)</label>
+                <input class="form-input" type="number" id="jobSalaryMax" placeholder="e.g. 1500000" min="0">
+              </div>
+            </div>
+
+            <!-- Section 2: Description -->
+            <h3 class="form-section-title"><i class="fas fa-align-left"></i> Job Description</h3>
+
+            <div class="form-group">
+              <label class="form-label" for="jobDescription">Description *</label>
+              <textarea class="form-textarea" id="jobDescription" placeholder="Describe the role, responsibilities, and what makes this opportunity exciting..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="jobRequirements">Requirements</label>
+              <textarea class="form-textarea" id="jobRequirements" placeholder="List the skills and qualifications required for this role..." style="min-height: 100px;"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="jobSkills">Skills (comma separated)</label>
+              <input class="form-input" type="text" id="jobSkills" placeholder="e.g. React, JavaScript, Node.js">
+            </div>
+
+            <!-- Section 3: Company & Application Info -->
+            <h3 class="form-section-title"><i class="fas fa-building"></i> Company Information</h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="companyName">Company Name *</label>
+                <input class="form-input" type="text" id="companyName" placeholder="e.g. TechCorp Inc." required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="companyWebsite">Company Website</label>
+                <input class="form-input" type="url" id="companyWebsite" placeholder="https://example.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="applicationEmail">Application Email *</label>
+              <input class="form-input" type="email" id="applicationEmail" placeholder="careers@company.com" required>
+            </div>
+
+            <!-- Logo Upload -->
+            <div class="form-group">
+              <label class="form-label">Company Logo</label>
+              <label class="file-upload" for="companyLogoUpload">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to upload company logo</p>
+              </label>
+              <input type="file" id="companyLogoUpload" accept="image/*" hidden>
+            </div>
+
+            <!-- Section 4: Publish -->
+            <h3 class="form-section-title"><i class="fas fa-check-circle"></i> Publishing Options</h3>
+
+            <div class="form-row mb-4">
+              <div class="form-group">
+                <label class="form-label" for="jobDeadline">Application Deadline</label>
+                <input class="form-input" type="date" id="jobDeadline">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="featuredJob">Featured Job</label>
+                <select class="form-select" id="featuredJob">
+                  <option value="no">Standard listing (Free)</option>
+                  <option value="featured">Featured listing ($99)</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg btn--block">
+              <i class="fas fa-paper-plane"></i>&nbsp;Publish Job
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div class="footer__brand">
+          <a href="index.html" class="logo" aria-label="CareerHub Home">
+            <span class="logo__icon"><i class="fas fa-briefcase"></i></span>
+            Career<span>Hub</span>
+          </a>
+          <p class="footer__brand-desc">
+            CareerHub is India's leading job and placement portal, helping professionals find rewarding careers and helping companies hire exceptional talent.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- For Candidates -->
+        <div>
+          <h4 class="footer__title">For Candidates</h4>
+          <ul>
+            <li><a href="jobs.html" class="footer__link">Find Jobs</a></li>
+            <li><a href="jobs.html" class="footer__link">Browse Jobs</a></li>
+            <li><a href="blog.html" class="footer__link">Career Advice</a></li>
+            <li><a href="blog.html" class="footer__link">Career Tips</a></li>
+          </ul>
+        </div>
+
+        <!-- For Employers -->
+        <div>
+          <h4 class="footer__title">For Employers</h4>
+          <ul>
+            <li><a href="post-job.html" class="footer__link">Post a Job</a></li>
+            <li><a href="#" class="footer__link">Employer Dashboard</a></li>
+            <li><a href="login.html" class="footer__link">Employer Login</a></li>
+            <li><a href="#" class="footer__link">Pricing Plans</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="footer__title">Resources</h4>
+          <ul>
+            <li><a href="#" class="footer__link">FAQs</a></li>
+            <li><a href="#" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="#" class="footer__link">Privacy Policy</a></li>
+            <li><a href="#" class="footer__link">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__newsletter">
+          <h4 class="footer__title">Newsletter</h4>
+          <p class="footer__newsletter-desc">Subscribe for the latest job alerts and career tips.</p>
+          <form class="footer__newsletter-form" novalidate>
+            <input
+              type="email"
+              class="footer__newsletter-input"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            >
+            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+          </form>
+          <p class="footer__newsletter-msg" hidden></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2024 CareerHub. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+    /* ---- Post Job Page Logic ---- */
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('#postJobForm');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Gather form data
+        const title = document.querySelector('#jobTitle').value.trim();
+        const category = document.querySelector('#jobCategory').value;
+        const location = document.querySelector('#jobLocation').value.trim();
+        const companyName = document.querySelector('#companyName').value.trim();
+        const email = document.querySelector('#applicationEmail').value.trim();
+
+        // Basic validation
+        if (!title || !category || !location || !companyName || !email) {
+          const msgContainer = document.querySelector('#postJobMessage');
+          msgContainer.innerHTML = `
+            <div class="alert" style="background: var(--color-danger-light); color: #721c24; border: 1px solid #f5c6cb;">
+              <i class="fas fa-exclamation-circle"></i>
+              <span>Please fill in all required fields marked with *.</span>
+            </div>
+          `;
+          return;
+        }
+
+        // Simulate success
+        const msgContainer = document.querySelector('#postJobMessage');
+        msgContainer.innerHTML = `
+          <div class="alert alert--success">
+            <i class="fas fa-check-circle"></i>
+            <span>Your job has been published successfully! You will be redirected shortly.</span>
+          </div>
+        `;
+
+        form.reset();
+
+        setTimeout(() => {
+          window.location.href = 'jobs.html';
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>
